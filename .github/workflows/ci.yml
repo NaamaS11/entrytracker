@@ -42,7 +42,7 @@ jobs:
       - name: Wait for services to be ready
         run: sleep 15
 
-      - name: Log in to Docker Hub
+       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
