@@ -33,4 +33,5 @@ jobs:
       - name: Run unit test with curl
         run: |
           curl --fail http://localhost:5000
-
+      - name: Build Docker image
+        run: docker build -t entrytracker:latest .
