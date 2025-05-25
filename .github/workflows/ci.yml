@@ -35,3 +35,14 @@ jobs:
           curl --fail http://localhost:5000
       - name: Build Docker image
         run: docker build -t entrytracker:latest .
+
+      - name: Run E2E environment with docker-compose
+        run: docker-compose up -d
+
+      - name: Wait for services to be ready
+        run: sleep 15
+
+      - name: Run E2E test with curl
+        run: |
+          curl --fail http://localhost:5000
+
