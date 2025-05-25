@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  entrytracker:
+    build: .
+    container_name: entrytracker
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=app_db
+    networks:
+      - et-network
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - et-network
+
+volumes:
+  db-data:
+
+networks:
+  et-network:
